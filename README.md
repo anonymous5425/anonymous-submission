@@ -16,17 +16,13 @@ Code: [GitHub](https://github.com/anonymous5425/anonymous-submission)
 > Recent advancements in neural vocoding are predominantly driven by Generative Adversarial Networks (GANs) operating in
 > the time-domain. While effective, this approach neglects the inductive bias offered by time-frequency representations,
 > resulting in reduntant and computionally-intensive upsampling operations. Fourier-based time-frequency representation
-> is
-> an appealing alternative, aligning more accurately with human auditory perception, and benefitting from
-> well-established
-> fast algorithms for its computation. Nevertheless, direct reconstruction of complex-valued spectrograms has been
-> historically problematic, primarily due to phase recovery issues. This study seeks to close this gap by presenting
-> Vocos, a new model that addresses the key challenges of modeling spectral coefficients. Vocos demonstrates improved
+> is an appealing alternative, aligning more accurately with human auditory perception, and benefitting from
+> well-established fast algorithms for its computation. Nevertheless, direct reconstruction of complex-valued
+> spectrograms has been historically problematic, primarily due to phase recovery issues. This study seeks to close this
+> gap by presenting Vocos, a new model that directly generates Fourier spectral coefficients. Vocos not only matches the
+> state-of-the-art in audio quality, as demonstrated in our evaluations, but it also substantially improves
 > computational efficiency, achieving an order of magnitude increase in speed compared to prevailing time-domain neural
-> vocoding approaches. As shown by objective evaluation, Vocos not only matches state-of-the-art audio quality, but
-> thanks
-> to frequency-aware generator, also effectively mitigates the periodicity issues frequently associated with time-domain
-> GANs. The source code and model weights have been open-sourced.
+> vocoding approaches. The source code and model weights have been open-sourced.
 
 ---
 
@@ -242,6 +238,8 @@ inverse Fourier transform.
 
 ### Resynthesis from mel-spectrograms
 
+#### LibriTTS `test-clean`
+
 <table>
   <tr>
     <th>Ground truth</th>
@@ -306,6 +304,75 @@ inverse Fourier transform.
     <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/istftnet/7021_85628_000037_000000.mp3" type="audio/mp3">Your browser does not support the audio element.</audio> </td>
     <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/vocos/7021_85628_000037_000000.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
   </tr>
+</table>
+
+#### LibriTTS `test-other`
+
+<table>
+  <tr>
+    <th>Ground truth</th>
+    <th>HiFi-GAN</th>
+    <th>BigVGAN</th>
+    <th>iSTFTNet</th>
+    <th>Vocos</th>
+  </tr>
+  <tr>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/gt/1688_142285_000000_000001.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/hifigan/1688_142285_000000_000001.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/bigvgan/1688_142285_000000_000001.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/istftnet/1688_142285_000000_000001.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/vocos/1688_142285_000000_000001.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+  </tr>
+  <tr>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/gt/2609_156975_000035_000003.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/hifigan/2609_156975_000035_000003.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/bigvgan/2609_156975_000035_000003.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/istftnet/2609_156975_000035_000003.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/vocos/2609_156975_000035_000003.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+  </tr>
+  <tr>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/gt/3538_163619_000064_000000.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/hifigan/3538_163619_000064_000000.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/bigvgan/3538_163619_000064_000000.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/istftnet/3538_163619_000064_000000.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/vocos/3538_163619_000064_000000.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+  </tr>
+  <tr>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/gt/3997_180297_000037_000002.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/hifigan/3997_180297_000037_000002.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/bigvgan/3997_180297_000037_000002.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/istftnet/3997_180297_000037_000002.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/vocos/3997_180297_000037_000002.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+  </tr>
+  <tr>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/gt/4198_61336_000005_000001.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/hifigan/4198_61336_000005_000001.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/bigvgan/4198_61336_000005_000001.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/istftnet/4198_61336_000005_000001.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/vocos/4198_61336_000005_000001.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+  </tr>
+  <tr>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/gt/5484_24318_000047_000000.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/hifigan/5484_24318_000047_000000.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/bigvgan/5484_24318_000047_000000.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/istftnet/5484_24318_000047_000000.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/vocos/5484_24318_000047_000000.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+  </tr>
+  <tr>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/gt/6070_86745_000002_000013.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/hifigan/6070_86745_000002_000013.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/bigvgan/6070_86745_000002_000013.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/istftnet/6070_86745_000002_000013.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/vocos/6070_86745_000002_000013.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+  </tr>
+  <tr>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/gt/6128_63241_000002_000019.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/hifigan/6128_63241_000002_000019.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/bigvgan/6128_63241_000002_000019.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/istftnet/6128_63241_000002_000019.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+    <td><audio controls preload="none" style="width: 175px;"><source src="audio/mel/noisy/vocos/6128_63241_000002_000019.mp3" type="audio/mp3">Your browser does not support the audio element.</audio></td>
+  </tr>
+
 </table>
 
 ### Audio reconstruction from Bark tokens
